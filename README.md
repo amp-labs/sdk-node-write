@@ -44,37 +44,118 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-> [!TIP]
-> To finish publishing your SDK to npm and others you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
-
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add @amp-labs/sdk-node-write
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add @amp-labs/sdk-node-write
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add @amp-labs/sdk-node-write
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add @amp-labs/sdk-node-write zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
+```
+
+
+
+### Model Context Protocol (MCP) Server
+
+This SDK is also an installable MCP server where the various SDK methods are
+exposed as tools that can be invoked by AI applications.
+
+> Node.js v20 or greater is required to run the MCP server from npm.
+
+<details>
+<summary>Claude installation steps</summary>
+
+Add the following server definition to your `claude_desktop_config.json` file:
+
+```json
+{
+  "mcpServers": {
+    "SDKNodeWrite": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "@amp-labs/sdk-node-write",
+        "--",
+        "mcp", "start",
+        "--api-key-header", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Cursor installation steps</summary>
+
+Create a `.cursor/mcp.json` file in your project root with the following content:
+
+```json
+{
+  "mcpServers": {
+    "SDKNodeWrite": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "@amp-labs/sdk-node-write",
+        "--",
+        "mcp", "start",
+        "--api-key-header", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
+
+```bash
+curl -L -o mcp-server \
+    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+chmod +x mcp-server
+```
+
+If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
+
+
+```json
+{
+  "mcpServers": {
+    "Todos": {
+      "command": "./DOWNLOAD/PATH/mcp-server",
+      "args": [
+        "start"
+      ]
+    }
+  }
+}
+```
+
+For a full list of server arguments, run:
+
+```sh
+npx -y --package @amp-labs/sdk-node-write -- mcp start --help
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -90,7 +171,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdkNodeWrite = new SDKNodeWrite({
   apiKeyHeader: process.env["SDKNODEWRITE_API_KEY_HEADER"] ?? "",
@@ -133,7 +214,7 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `apiKeyHeader` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdkNodeWrite = new SDKNodeWrite({
   apiKeyHeader: process.env["SDKNODEWRITE_API_KEY_HEADER"] ?? "",
@@ -204,7 +285,7 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdkNodeWrite = new SDKNodeWrite({
   apiKeyHeader: process.env["SDKNODEWRITE_API_KEY_HEADER"] ?? "",
@@ -246,7 +327,7 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdkNodeWrite = new SDKNodeWrite({
   retryConfig: {
@@ -299,11 +380,11 @@ Some methods specify known errors which can be thrown. All the known errors are 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `APIError`.
 
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 import {
   SDKValidationError,
   WriteRecordsSyncWriteResponseFailure,
-} from "sdk-node-write/models/errors";
+} from "@amp-labs/sdk-node-write/models/errors";
 
 const sdkNodeWrite = new SDKNodeWrite({
   apiKeyHeader: process.env["SDKNODEWRITE_API_KEY_HEADER"] ?? "",
@@ -373,9 +454,9 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdkNodeWrite = new SDKNodeWrite({
   serverURL: "https://write.withampersand.com/v1",
@@ -424,8 +505,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
-import { HTTPClient } from "sdk-node-write/lib/http";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
+import { HTTPClient } from "@amp-labs/sdk-node-write/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -466,7 +547,7 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdk = new SDKNodeWrite({ debugLogger: console });
 ```

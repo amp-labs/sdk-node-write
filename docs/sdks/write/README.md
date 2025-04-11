@@ -14,7 +14,7 @@ Write records
 ### Example Usage
 
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdkNodeWrite = new SDKNodeWrite({
   apiKeyHeader: process.env["SDKNODEWRITE_API_KEY_HEADER"] ?? "",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKNodeWriteCore } from "sdk-node-write/core.js";
-import { writeRecords } from "sdk-node-write/funcs/writeRecords.js";
+import { SDKNodeWriteCore } from "@amp-labs/sdk-node-write/core.js";
+import { writeRecords } from "@amp-labs/sdk-node-write/funcs/writeRecords.js";
 
 // Use `SDKNodeWriteCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

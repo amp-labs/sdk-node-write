@@ -5,7 +5,7 @@ Write request
 ## Example Usage
 
 ```typescript
-import { WriteRecordsWriteRequest } from "sdk-node-write/models/operations";
+import { WriteRecordsWriteRequest } from "@amp-labs/sdk-node-write/models/operations";
 
 let value: WriteRecordsWriteRequest = {
   groupRef: "<value>",

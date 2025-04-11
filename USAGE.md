@@ -1,6 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { SDKNodeWrite } from "sdk-node-write";
+import { SDKNodeWrite } from "@amp-labs/sdk-node-write";
 
 const sdkNodeWrite = new SDKNodeWrite({
   apiKeyHeader: process.env["SDKNODEWRITE_API_KEY_HEADER"] ?? "",

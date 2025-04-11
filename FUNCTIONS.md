@@ -19,9 +19,9 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { SDKNodeWriteCore } from "sdk-node-write/core.js";
-import { writeRecords } from "sdk-node-write/funcs/writeRecords.js";
-import { SDKValidationError } from "sdk-node-write/models/errors/sdkvalidationerror.js";
+import { SDKNodeWriteCore } from "@amp-labs/sdk-node-write/core.js";
+import { writeRecords } from "@amp-labs/sdk-node-write/funcs/writeRecords.js";
+import { SDKValidationError } from "@amp-labs/sdk-node-write/models/errors/sdkvalidationerror.js";
 
 // Use `SDKNodeWriteCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
