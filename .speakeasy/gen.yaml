@@ -44,7 +44,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: sdk-node-write
+  packageName: "@amp-labs/sdk-node-write"
   responseFormat: flat
   templateVersion: v2
   useIndexModules: true
