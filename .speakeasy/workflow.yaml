@@ -12,6 +12,9 @@ targets:
     sdk-node-write:
         target: typescript
         source: sdk-node-write-OAS
+        publish:
+            npm:
+                token: $npm_token
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/ampersand/ts/sdk-node-write-oas-typescript-code-samples
