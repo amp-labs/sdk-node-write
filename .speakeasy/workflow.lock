@@ -1,0 +1,38 @@
+speakeasyVersion: 1.468.7
+sources:
+    sdk-node-write-OAS:
+        sourceNamespace: sdk-node-write-oas
+        sourceRevisionDigest: sha256:fbe67c38cf512a94d13c16d09d4301855d94a7d11168bfe5e98c34c232b3d7cb
+        sourceBlobDigest: sha256:21e93dfb89c7df7bdbb4a74696729810881fc6a6fd0a73bd5dffbf696ece0464
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    sdk-node-write:
+        source: sdk-node-write-OAS
+        sourceNamespace: sdk-node-write-oas
+        sourceRevisionDigest: sha256:fbe67c38cf512a94d13c16d09d4301855d94a7d11168bfe5e98c34c232b3d7cb
+        sourceBlobDigest: sha256:21e93dfb89c7df7bdbb4a74696729810881fc6a6fd0a73bd5dffbf696ece0464
+        codeSamplesNamespace: sdk-node-write-oas-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:27b0afbae80478e407b89b8169bcad309132f97115879930ded9283dcf5ffb41
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        sdk-node-write-OAS:
+            inputs:
+                - location: https://raw.githubusercontent.com/amp-labs/openapi/main/api/generated/write.json
+            overlays:
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
+            registry:
+                location: registry.speakeasyapi.dev/ampersand/ts/sdk-node-write-oas
+    targets:
+        sdk-node-write:
+            target: typescript
+            source: sdk-node-write-OAS
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/ampersand/ts/sdk-node-write-oas-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false

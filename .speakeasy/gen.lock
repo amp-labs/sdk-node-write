@@ -1,0 +1,120 @@
+lockVersion: 2.0.0
+id: 739ee154-cd96-4726-9e65-573513617a60
+management:
+  docChecksum: a3c76928b512c5c34f9ace7a5bf5a669
+  docVersion: 1.0.0
+  speakeasyVersion: 1.468.7
+  generationVersion: 2.493.15
+  releaseVersion: 0.1.1
+  configChecksum: e67904b3f2f11b792342bf476bec5973
+features:
+  typescript:
+    acceptHeaders: 2.81.2
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.11
+    core: 3.18.14
+    defaultEnabledRetries: 0.1.0
+    devContainers: 2.90.0
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    globalSecurity: 2.82.12
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
+    globalServerURLs: 2.82.4
+    nameOverrides: 2.81.2
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.2.0
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .eslintrc.cjs
+  - .gitattributes
+  - .npmignore
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/components/security.md
+  - docs/models/errors/data.md
+  - docs/models/errors/errors.md
+  - docs/models/errors/warnings.md
+  - docs/models/errors/writerecordssyncwriteresponsefailure.md
+  - docs/models/errors/writeresult.md
+  - docs/models/operations/associations.md
+  - docs/models/operations/data.md
+  - docs/models/operations/mode.md
+  - docs/models/operations/recordt.md
+  - docs/models/operations/type.md
+  - docs/models/operations/writerecordsapiproblem.md
+  - docs/models/operations/writerecordsrequest.md
+  - docs/models/operations/writerecordsresponse.md
+  - docs/models/operations/writerecordssyncwriteresponsesuccess.md
+  - docs/models/operations/writerecordswriterequest.md
+  - docs/models/operations/writeresult.md
+  - docs/sdks/sdknodewrite/README.md
+  - docs/sdks/write/README.md
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/writeRecords.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/env.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/components/index.ts
+  - src/models/components/security.ts
+  - src/models/errors/apierror.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/errors/writerecords.ts
+  - src/models/operations/index.ts
+  - src/models/operations/writerecords.ts
+  - src/sdk/index.ts
+  - src/sdk/sdk.ts
+  - src/sdk/write.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  writeRecords:
+    speakeasy-default-write-records:
+      parameters:
+        path:
+          projectIdOrName: "<value>"
+          integrationId: "<id>"
+          objectName: "<value>"
+      requestBody:
+        application/json: {"groupRef": "<value>", "type": "create", "mode": "synchronous", "associations": [{}]}
+      responses:
+        "200":
+          application/json: {"result": {"success": true, "recordId": "003Dp0X#@RG7IAP"}, "operationId": "acb0d75a-1b59-4aad-a191-48c5b75ea9e4"}
+        "422":
+          application/json: {"errors": [{"message": "The record with ID 003Dp0X#@RG7IAP was not found"}, {"message": "The record with ID 003Dp0X#@RG7IAP was not found"}, {"message": "The record with ID 003Dp0X#@RG7IAP was not found"}], "result": {"success": true, "recordId": "003Dp0X#@RG7IAP"}, "warnings": [{"message": "The record with ID 003Dp0X#@RG7IAP was not found"}], "operationId": "acb0d75a-1b59-4aad-a191-48c5b75ea9e4"}
+        default:
+          application/problem+json: {"type": "urn:problem-type:exampleOrganization:exampleProblem", "href": "https://www.belgif.be/specification/rest/api-guide/#standardized-problem-types", "title": "Service Unavailable", "status": 503, "detail": "Description of specific occurrence of the problem", "instance": "urn:uuid:123e4567-e89b-12d3-a456-426614174000"}
+generatedTests: {}
