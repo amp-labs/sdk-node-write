@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 export enum RecordsAcceptEnum {
@@ -31,11 +32,11 @@ export enum RecordsAcceptEnum {
 /**
  * Write records
  */
-export async function writeRecords(
+export function writeRecords(
   client: SDKNodeWriteCore,
   request: operations.WriteRecordsRequest,
   options?: RequestOptions & { acceptHeaderOverride?: RecordsAcceptEnum },
-): Promise<
+): APIPromise<
   Result<
     operations.WriteRecordsResponse,
     | errors.WriteRecordsSyncWriteResponseFailure
@@ -48,13 +49,40 @@ export async function writeRecords(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKNodeWriteCore,
+  request: operations.WriteRecordsRequest,
+  options?: RequestOptions & { acceptHeaderOverride?: RecordsAcceptEnum },
+): Promise<
+  [
+    Result<
+      operations.WriteRecordsResponse,
+      | errors.WriteRecordsSyncWriteResponseFailure
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.WriteRecordsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
@@ -89,6 +117,7 @@ export async function writeRecords(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "writeRecords",
     oAuth2Scopes: [],
 
@@ -111,7 +140,7 @@ export async function writeRecords(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -122,7 +151,7 @@ export async function writeRecords(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -142,15 +171,16 @@ export async function writeRecords(
     | ConnectionError
   >(
     M.json(200, operations.WriteRecordsResponse$inboundSchema),
-    M.fail([400, "4XX", "5XX"]),
     M.jsonErr(422, errors.WriteRecordsSyncWriteResponseFailure$inboundSchema),
+    M.fail([400, "4XX"]),
+    M.fail("5XX"),
     M.json("default", operations.WriteRecordsResponse$inboundSchema, {
       ctype: "application/problem+json",
     }),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

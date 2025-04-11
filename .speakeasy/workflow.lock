@@ -1,20 +1,21 @@
-speakeasyVersion: 1.468.7
+speakeasyVersion: 1.531.3
 sources:
     sdk-node-write-OAS:
         sourceNamespace: sdk-node-write-oas
-        sourceRevisionDigest: sha256:fbe67c38cf512a94d13c16d09d4301855d94a7d11168bfe5e98c34c232b3d7cb
-        sourceBlobDigest: sha256:21e93dfb89c7df7bdbb4a74696729810881fc6a6fd0a73bd5dffbf696ece0464
+        sourceRevisionDigest: sha256:3e91b8ab8902cbd747f7adc7fa713910a1ffa8bc725f45e419cbe895bae2cee1
+        sourceBlobDigest: sha256:82a040c623afc8deef7e6a5390b0f92b9eee2e7eace2e6f99c8ab9e15b0d5338
         tags:
             - latest
+            - speakeasy-sdk-regen-1744379428
             - 1.0.0
 targets:
     sdk-node-write:
         source: sdk-node-write-OAS
         sourceNamespace: sdk-node-write-oas
-        sourceRevisionDigest: sha256:fbe67c38cf512a94d13c16d09d4301855d94a7d11168bfe5e98c34c232b3d7cb
-        sourceBlobDigest: sha256:21e93dfb89c7df7bdbb4a74696729810881fc6a6fd0a73bd5dffbf696ece0464
+        sourceRevisionDigest: sha256:3e91b8ab8902cbd747f7adc7fa713910a1ffa8bc725f45e419cbe895bae2cee1
+        sourceBlobDigest: sha256:82a040c623afc8deef7e6a5390b0f92b9eee2e7eace2e6f99c8ab9e15b0d5338
         codeSamplesNamespace: sdk-node-write-oas-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:27b0afbae80478e407b89b8169bcad309132f97115879930ded9283dcf5ffb41
+        codeSamplesRevisionDigest: sha256:94f7148a40f731c6d5b08ae630495e69e7749df247c6252a6863a19654603a95
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -30,6 +31,9 @@ workflow:
         sdk-node-write:
             target: typescript
             source: sdk-node-write-OAS
+            publish:
+                npm:
+                    token: $npm_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/ampersand/ts/sdk-node-write-oas-typescript-code-samples

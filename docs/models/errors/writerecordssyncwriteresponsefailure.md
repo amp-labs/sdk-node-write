@@ -5,7 +5,7 @@ Error encountered while creating records
 ## Example Usage
 
 ```typescript
-import { WriteRecordsSyncWriteResponseFailure } from "sdk-node-write/models/errors";
+import { WriteRecordsSyncWriteResponseFailure } from "@amp-labs/sdk-node-write/models/errors";
 
 // No examples available for this model
 ```

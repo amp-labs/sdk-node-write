@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WriteResult } from "sdk-node-write/models/operations";
+import { WriteResult } from "@amp-labs/sdk-node-write/models/operations";
 
 let value: WriteResult = {
   success: true,

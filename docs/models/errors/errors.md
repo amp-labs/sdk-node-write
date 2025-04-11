@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Errors } from "sdk-node-write/models/errors";
+import { Errors } from "@amp-labs/sdk-node-write/models/errors";
 
 let value: Errors = {
   message: "The record with ID 003Dp0X#@RG7IAP was not found",

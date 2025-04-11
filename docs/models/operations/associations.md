@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Associations } from "sdk-node-write/models/operations";
+import { Associations } from "@amp-labs/sdk-node-write/models/operations";
 
 let value: Associations = {};
 ```

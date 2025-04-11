@@ -5,7 +5,7 @@ The success response
 ## Example Usage
 
 ```typescript
-import { WriteRecordsSyncWriteResponseSuccess } from "sdk-node-write/models/operations";
+import { WriteRecordsSyncWriteResponseSuccess } from "@amp-labs/sdk-node-write/models/operations";
 
 let value: WriteRecordsSyncWriteResponseSuccess = {
   result: {
