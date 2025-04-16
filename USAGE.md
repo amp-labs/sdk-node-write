@@ -15,6 +15,10 @@ async function run() {
       groupRef: "<value>",
       type: "create",
       mode: "synchronous",
+      record: {
+        "email": "david@withampersand.com",
+        "warmthScore": "ready-for-close",
+      },
       associations: [
         {},
       ],

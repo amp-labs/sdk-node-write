@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 739ee154-cd96-4726-9e65-573513617a60
 management:
-  docChecksum: a3c76928b512c5c34f9ace7a5bf5a669
+  docChecksum: 64ea3c6843068b0761ae4b2d2478b0cc
   docVersion: 1.0.0
-  speakeasyVersion: 1.531.3
-  generationVersion: 2.570.3
-  releaseVersion: 0.2.0
-  configChecksum: 15d73502c9cdc4fdb6e6be8aa4a5cd86
+  speakeasyVersion: 1.533.0
+  generationVersion: 2.578.0
+  releaseVersion: 0.2.1
+  configChecksum: 6d1fb13db84b0bf4235d7884be938aa6
   repoURL: https://github.com/amp-labs/sdk-node-write.git
   installationURL: https://github.com/amp-labs/sdk-node-write
   published: true
@@ -48,7 +48,6 @@ generatedFiles:
   - docs/models/operations/associations.md
   - docs/models/operations/data.md
   - docs/models/operations/mode.md
-  - docs/models/operations/recordt.md
   - docs/models/operations/type.md
   - docs/models/operations/writerecordsapiproblem.md
   - docs/models/operations/writerecordsrequest.md
@@ -128,7 +127,7 @@ examples:
           integrationId: "<id>"
           objectName: "<value>"
       requestBody:
-        application/json: {"groupRef": "<value>", "type": "create", "mode": "synchronous", "associations": [{}]}
+        application/json: {"groupRef": "<value>", "type": "create", "mode": "synchronous", "record": {"email": "david@withampersand.com", "warmthScore": "ready-for-close"}, "associations": [{}]}
       responses:
         "200":
           application/json: {"result": {"success": true, "recordId": "003Dp0X#@RG7IAP"}, "operationId": "acb0d75a-1b59-4aad-a191-48c5b75ea9e4"}

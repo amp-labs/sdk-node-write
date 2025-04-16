@@ -13,7 +13,10 @@ let value: WriteRecordsRequest = {
     groupRef: "<value>",
     type: "create",
     mode: "synchronous",
-    record: {},
+    record: {
+      "email": "david@withampersand.com",
+      "warmthScore": "ready-for-close",
+    },
     associations: [
       {},
     ],
