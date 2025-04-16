@@ -2,19 +2,20 @@ speakeasyVersion: 1.533.0
 sources:
     sdk-node-write-OAS:
         sourceNamespace: sdk-node-write-oas
-        sourceRevisionDigest: sha256:06b1b6f7e757eee8d8995529ed7c456e28797c2ce4ab2c32548281b41d2920cc
+        sourceRevisionDigest: sha256:55717db0e838cd16243266eacf5a19a3ab3ede24e863c33a77bb63caff8de850
         sourceBlobDigest: sha256:0c2a1265b06a1cf9c47cc53ad70791b12ef489d7b3b3db7ee2b9b1389958dc42
         tags:
             - latest
+            - speakeasy-sdk-regen-1744838301
             - 1.0.0
 targets:
     sdk-node-write:
         source: sdk-node-write-OAS
         sourceNamespace: sdk-node-write-oas
-        sourceRevisionDigest: sha256:06b1b6f7e757eee8d8995529ed7c456e28797c2ce4ab2c32548281b41d2920cc
+        sourceRevisionDigest: sha256:55717db0e838cd16243266eacf5a19a3ab3ede24e863c33a77bb63caff8de850
         sourceBlobDigest: sha256:0c2a1265b06a1cf9c47cc53ad70791b12ef489d7b3b3db7ee2b9b1389958dc42
         codeSamplesNamespace: sdk-node-write-oas-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:76436fb2a93468ebfad3b42b075c0787c98c73768c8499121b24692307e7084a
+        codeSamplesRevisionDigest: sha256:b447115a40eef00add808a5c2746958442e8da849055123dfa0e1d519b756cd7
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
