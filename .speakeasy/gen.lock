@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.533.0
   generationVersion: 2.578.0
-  releaseVersion: 0.2.1
-  configChecksum: 6d1fb13db84b0bf4235d7884be938aa6
+  releaseVersion: 0.2.3
+  configChecksum: ac012b5d80151012ba2386ce3d202287
   repoURL: https://github.com/amp-labs/sdk-node-write.git
   installationURL: https://github.com/amp-labs/sdk-node-write
   published: true
